@@ -11,6 +11,7 @@
   --background-color-primary: #ffffff;
   --background-color-our-team: #f4f4fd;
   --accent-active-color: #404bbf;
+  --hover-effect: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -48,6 +49,9 @@ ol {
 img {
   display: block;
 }
+button {
+  cursor: pointer;
+}
 .conteiner {
   width: 1158px;
   margin-left: auto;
@@ -71,8 +75,8 @@ img {
 .page-header-conteiner {
   display: flex;
   align-items: center;
-  padding-top: 24px;
-  padding-bottom: 24px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 .logo {
   text-decoration: none;
@@ -98,23 +102,34 @@ img {
   align-items: center;
 }
 .header-link {
+  display: flex;
+  align-items: center;
   color: var(--color-primary);
+  padding-top: 24px;
+  padding-bottom: 24px;
   font-weight: 500;
   line-height: 1.5;
   font-style: normal;
+  transition: color var(--hover-effect);
 }
+.link-studio::before {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #404bbf;
+}
+/* .underline::after {
+  content: "";
+  background-color: var(--action-color);
+} */
+
 .header-link:hover,
 .header-link:focus {
   color: var(--link-hover);
 }
-/* .link-studio::before {
-  display: block;
-  content: "";
-  width: 48px;
-  height: 4;
-  border-radius: 50%;
-  background-color: #404bbf;
-} */
+
 .address {
   font-style: normal;
   margin-left: auto;
@@ -130,6 +145,7 @@ img {
 .address-link {
   color: var(--link-secondary);
   font-weight: inherit;
+  transition: color var(--hover-effect);
 }
 
 .address-link:hover,
@@ -158,7 +174,7 @@ img {
   text-align: center;
 }
 
-ero-title {
+.hero-title {
   font-weight: 700;
   font-size: 56px;
   line-height: 1.07;
@@ -188,6 +204,7 @@ ero-title {
   padding-bottom: 16px;
   /* margin-left: auto;
   margin-right: auto; */
+  transition: background-color var(--hover-effect);
 }
 
 .button-hero:hover,
@@ -307,6 +324,7 @@ ero-title {
   height: 40px;
   border-radius: 50%;
   background-color: #4d5ae5;
+  transition: background-color var(--hover-effect);
 }
 .our-team-footer-list-link:hover,
 .our-team-footer-list-link:focus {
@@ -349,6 +367,7 @@ ero-title {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: border-color var(--hover-effect);
 }
 
 .coustomers-items-link {
@@ -362,6 +381,7 @@ ero-title {
   width: 104px;
   height: 56px;
   fill: #8e8f99;
+  transition: fill var(--hover-effect);
 }
 
 .coustomers-items:is(:hover, :focus) .coustomers-items-icon {
@@ -425,6 +445,7 @@ ero-title {
   height: 40px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color var(--hover-effect);
 }
 .footer-social-list-link:hover,
 .footer-social-list-link:focus {
@@ -434,6 +455,61 @@ ero-title {
   width: 24px;
   height: 24px;
   fill: #f4f4fd;
+}
+/* ==================modal-window============= */
+.backdrop {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46, 47, 66, 0.4);
+
+  transition: opacity 250ms var(--hover-effect),
+    visibility 250ms var(--hover-effect);
+}
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 408px;
+  height: 576px;
+  background-color: #fff;
+}
+.modal-close-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #e7e9fc;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0;
+  transition: background-color var(--hover-effect);
+}
+.modal-close-btn-icon {
+  width: 8px;
+  height: 8px;
+  transition: fill var(--hover-effect);
+}
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+  background-color: #404bbf;
+}
+.modal-close-btn:hover .modal-close-btn-icon,
+.modal-close-btn:focus .modal-close-btn-icon {
+  fill: #fff;
 }
 /*===================portfolio=========================*/
 /*====================Кнопки=================*/
@@ -455,6 +531,8 @@ ero-title {
   padding-bottom: 12px;
   padding-left: 12px;
   padding-right: 12px;
+  transition: color var(--hover-effect), background-color var(--hover-effect),
+    box-shadow var(--hover-effect);
 }
 .portfolio button:hover,
 .portfolio button:focus {
@@ -483,11 +561,46 @@ ero-title {
 }
 .flex-element {
   flex-basis: calc((100% - 48px) / 3);
+  transition: box-shadow var(--hover-effect);
 }
 .flex-element:hover,
 .flex-element:focus {
   box-shadow: 0px 1px 6px 0px rgba(46, 47, 66, 0.08);
 }
+
+.portfolio-list-link-wrapper {
+  display: block;
+}
+.portfolio-list-img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.overley {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  color: #f4f4fd;
+  background-color: #4d5ae5;
+  transform: translate(0, 100%);
+  transition: transform var(--hover-effect);
+
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+
+  padding-top: 40px;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+.portfolio-list-link-wrapper:hover .overley,
+.portfolio-list-link-wrapper:focus .overley {
+  transform: translate(0, 0);
+}
+
 .flex-element-text {
   border-color: #e7e9fc;
   border-style: solid;
